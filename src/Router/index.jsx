@@ -1,15 +1,13 @@
 import React from 'react';
-import { Switch, BrowserRouter, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
-import Home from '../pages/home/Home';
+import Home from '../pages/home';
 
 function Router() {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/" component={ Home } />
-      </Switch>
-    </BrowserRouter>
+    <Switch>
+      <Route exact path="/" component={ Home } />
+    </Switch>
   );
 }
 
