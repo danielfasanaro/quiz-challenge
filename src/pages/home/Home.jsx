@@ -5,8 +5,7 @@ import Title from '../../components/Title';
 import CenterText from '../../components/CenterText';
 import TextInput from '../../components/TextInput';
 import StartButton from './StartButton';
-import { changeUser } from '../../redux/reducers';
-import { fetchNewToken } from '../../services/triviaAPI';
+import { changeUser, getToken } from '../../redux/reducers';
 
 function Home() {
   const dispatch = useDispatch();
@@ -25,9 +24,7 @@ function Home() {
         Digite seu nome:
       </TextInput>
       <StartButton
-        onClick={ () => {
-          fetchNewToken();
-        } }
+        onClick={ () => dispatch(getToken()) }
       />
     </>
   );

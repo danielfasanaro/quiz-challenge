@@ -4,20 +4,21 @@ export async function fetchNewToken() {
     const fetchResponse = await fetch(endpoint);
     if (!fetchResponse.ok) throw new Error(fetchResponse.statusTexte);
     const fetchResult = await fetchResponse.json();
-    localStorage.setItem('token', fetchResult.token);
-  } catch (err) {
-    console.error(err);
+    return fetchResult.token;
+  } catch (error) {
+    console.error(error);
   }
 }
 
-export async function fetchQuestions(token) {
+export async function fetchQuestions() {
   try {
-    const endpoint = `https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean&token=${token}`;
+    // const endpoint = `https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean&token=${token}`;
+    const endpoint = 'https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean';
     const fetchResponse = await fetch(endpoint);
     if (!fetchResponse.ok) throw new Error(fetchResponse.statusText);
     const fetchResult = await fetchResponse.json();
     return fetchResult.results;
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
   }
 }
