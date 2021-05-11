@@ -4,7 +4,7 @@ export async function fetchNewToken() {
     const fetchResponse = await fetch(endpoint);
     if (!fetchResponse.ok) throw new Error(fetchResponse.statusTexte);
     const fetchResult = await fetchResponse.json();
-    return fetchResult;
+    localStorage.setItem('token', fetchResult.token);
   } catch (err) {
     console.error(err);
   }
