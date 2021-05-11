@@ -11,7 +11,7 @@ function StartButton({ onClick }) {
 }
 
 StartButton.propTypes = {
-  onClicl: func,
+  onClick: func,
 }.isRequired;
 
 export default StartButton;
