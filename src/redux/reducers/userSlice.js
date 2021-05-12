@@ -7,6 +7,7 @@ const INITIAL_USER_STATE = {
   user: '',
   token: getLocalToken() || '',
   error: '',
+  ranking: [],
 };
 
 const userSlice = createSlice({
@@ -22,6 +23,9 @@ const userSlice = createSlice({
     getTokenFailed(state, action) {
       state.error = action.payload;
     },
+    addUserScore(state, action) {
+      state.ranking.push(action.payload);
+    },
   },
 });
 
@@ -29,6 +33,7 @@ export const {
   changeUser,
   getTokenSuccess,
   getTokenFailed,
+  addUserScore,
 } = userSlice.actions;
 
 export const getToken = () => async (dispatch) => {

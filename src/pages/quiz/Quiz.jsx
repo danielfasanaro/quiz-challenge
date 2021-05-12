@@ -8,6 +8,7 @@ import AnswerList from './AnswerList';
 import Loading from '../../components/Loading';
 import ErrorPage from '../../components/ErrorPage';
 import { getQuestions } from '../../redux/reducers';
+import { setLocalRanking } from '../../services/ranking';
 
 function Quiz() {
   const dispatch = useDispatch();
@@ -18,9 +19,11 @@ function Quiz() {
     error,
     currentQuestion,
     endGame,
+    score,
   } = useSelector((state) => state.quizReducer);
 
   const {
+    user,
     token,
   } = useSelector((state) => state.userReducer);
 
@@ -28,7 +31,10 @@ function Quiz() {
     dispatch(getQuestions(token));
   }, [dispatch, token]);
 
-  if (endGame) return <Redirect to="/results" />;
+  if (endGame) {
+    setLocalRanking({ user, score });
+    return <Redirect to="/results" />;
+  }
   if (isLoading) return <Loading>Loading Question...</Loading>;
   if (error) return <ErrorPage />;
 

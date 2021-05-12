@@ -3,12 +3,13 @@ import { createSlice } from '@reduxjs/toolkit';
 import { fetchQuestions } from '../../services/triviaAPI';
 
 const INITIAL_QUIZ_STATE = {
-  isLoading: true,
-  questions: [],
-  error: '',
   answers: [],
   currentQuestion: 0,
+  error: '',
   endGame: false,
+  isLoading: true,
+  questions: [],
+  score: 0,
 };
 
 const quizSlice = createSlice({
@@ -36,6 +37,21 @@ const quizSlice = createSlice({
       state.currentQuestion += 1;
       state.answers.push(newAnswer);
       state.endGame = state.currentQuestion >= state.questions.length;
+
+      const correctAnswers = state.answers.reduce(
+        (sum, { isCorrect }) => (isCorrect ? sum + 1 : sum),
+        0,
+      );
+      state.score = (correctAnswers / state.questions.length) * 100;
+    },
+    restartGame(state) {
+      state.answers = [];
+      state.currentQuestion = 0;
+      state.endGame = false;
+      state.error = '';
+      state.isLoading = true;
+      state.questions = [];
+      state.score = 0;
     },
   },
 });
@@ -45,6 +61,7 @@ export const {
   getQuestionsSuccess,
   getQuestionsFailed,
   addAnswer,
+  restartGame,
 } = quizSlice.actions;
 
 export const getQuestions = (token) => async (dispatch) => {

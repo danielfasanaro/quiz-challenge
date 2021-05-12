@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import {
   Home,
   Quiz,
+  Results,
 } from '../pages';
 
 function Router() {
@@ -11,6 +12,7 @@ function Router() {
     <Switch>
       <Route exact path="/" component={ Home } />
       <Route path="/quiz" component={ Quiz } />
+      <Route path="/results" component={ Results } />
     </Switch>
   );
 }
