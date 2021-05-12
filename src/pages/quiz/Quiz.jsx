@@ -31,6 +31,7 @@ function Quiz() {
     dispatch(getQuestions(token));
   }, [dispatch, token]);
 
+  if (!token) return <ErrorPage>Please restart game to create a new session</ErrorPage>;
   if (updateRanking) dispatch(addRankingScore({ user, score }));
   if (endGame) return <Redirect to="/results" />;
   if (isLoading) return <Loading>Loading Question...</Loading>;
