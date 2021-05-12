@@ -11,8 +11,8 @@ function Ranking() {
   return (
     <div>
       {topFive.map(({ user, score }, pos) => (
-        <span key={ `${user || 'Sem nome'}-${pos}` } className="ranking-user-score">
-          {`${user || 'Sem nome'} - ${score}%`}
+        <span key={ `${user || 'Unknown'}-${pos}` } className="ranking-user-score">
+          {`${user || 'Unknown'} - ${score}%`}
         </span>
       ))}
       <ResetRankingButton />

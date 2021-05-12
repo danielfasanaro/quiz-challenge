@@ -5,7 +5,7 @@ import { getLocalToken, setLocalToken } from '../../services/token';
 
 const INITIAL_USER_STATE = {
   user: '',
-  token: getLocalToken() || '',
+  token: '',
   error: '',
 };
 

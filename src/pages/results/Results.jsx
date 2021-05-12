@@ -7,6 +7,7 @@ import Title from '../../components/Title';
 import CenterText from '../../components/CenterText';
 import Ranking from './Ranking';
 import LinkButton from '../../components/LinkButton';
+import ErrorPage from '../../components/ErrorPage';
 import { restartGame } from '../../redux/reducers';
 
 function Results() {
@@ -19,6 +20,7 @@ function Results() {
 
   const {
     user,
+    token,
   } = useSelector((state) => state.userReducer);
 
   function renderQuestionsAndResults() {
@@ -34,9 +36,11 @@ function Results() {
     );
   }
 
+  if (!token) return <ErrorPage>Please restart game to create a new session</ErrorPage>;
+
   return (
     <>
-      <Title>{`${user || 'Sem Nome'} your score is:${score}%`}</Title>
+      <Title>{`${user || 'Unknown'} your score is:${score}%`}</Title>
       <CenterText>{renderQuestionsAndResults()}</CenterText>
       <Ranking />
       <LinkButton

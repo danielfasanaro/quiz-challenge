@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import Title from '../../components/Title';
 import CenterText from '../../components/CenterText';
 import TextInput from '../../components/TextInput';
-import StartButton from './StartButton';
+import LinkButton from '../../components/LinkButton';
 import { changeUser, getToken } from '../../redux/reducers';
 
 function Home() {
@@ -23,9 +23,12 @@ function Home() {
       >
         Digite seu nome:
       </TextInput>
-      <StartButton
+      <LinkButton
+        path="/quiz"
         onClick={ () => dispatch(getToken()) }
-      />
+      >
+        START
+      </LinkButton>
     </>
   );
 }
