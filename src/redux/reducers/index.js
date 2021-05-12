@@ -1,12 +1,14 @@
 export {
   default as userReducer,
-  changeUser,
   getToken,
+  changeUser,
 } from './userSlice';
 
 export {
   default as quizReducer,
   getQuestions,
+  addRankingScore,
   addAnswer,
   restartGame,
+  setRanking,
 } from './quizSlice';

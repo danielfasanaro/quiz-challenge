@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { fetchQuestions } from '../../services/triviaAPI';
+import { getLocalRanking, setLocalRanking } from '../../services/localRanking';
 
 const INITIAL_QUIZ_STATE = {
   answers: [],
@@ -10,6 +11,8 @@ const INITIAL_QUIZ_STATE = {
   isLoading: true,
   questions: [],
   score: 0,
+  ranking: [],
+  updateRanking: false,
 };
 
 const quizSlice = createSlice({
@@ -37,6 +40,7 @@ const quizSlice = createSlice({
       state.currentQuestion += 1;
       state.answers.push(newAnswer);
       state.endGame = state.currentQuestion >= state.questions.length;
+      state.updateRanking = state.currentQuestion >= state.questions.length;
 
       const correctAnswers = state.answers.reduce(
         (sum, { isCorrect }) => (isCorrect ? sum + 1 : sum),
@@ -48,10 +52,12 @@ const quizSlice = createSlice({
       state.answers = [];
       state.currentQuestion = 0;
       state.endGame = false;
-      state.error = '';
       state.isLoading = true;
       state.questions = [];
-      state.score = 0;
+    },
+    setRanking(state, action) {
+      state.ranking = action.payload;
+      state.updateRanking = false;
     },
   },
 });
@@ -62,6 +68,7 @@ export const {
   getQuestionsFailed,
   addAnswer,
   restartGame,
+  setRanking,
 } = quizSlice.actions;
 
 export const getQuestions = (token) => async (dispatch) => {
@@ -72,6 +79,14 @@ export const getQuestions = (token) => async (dispatch) => {
   } catch (error) {
     dispatch(getQuestionsFailed(error));
   }
+};
+
+export const addRankingScore = (newScore) => async (dispatch) => {
+  const ranking = getLocalRanking();
+  const newRanking = [...ranking, newScore]
+    .sort((user1, user2) => user2.score - user1.score);
+  setLocalRanking(newRanking);
+  dispatch(setRanking(newRanking));
 };
 
 export default quizSlice.reducer;

@@ -1,17 +1,21 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
-import { getLocalRanking } from '../../services/ranking';
+import ResetRankingButton from './ResetRankingButton';
 
 function Ranking() {
-  const topFive = 5;
-  const ranking = getLocalRanking().slice(0, topFive);
+  const { ranking } = useSelector((state) => state.quizReducer);
+  const shownScores = 5;
+  const topFive = ranking.slice(0, shownScores);
+
   return (
     <div>
-      {ranking.map(({ user, score }, pos) => (
+      {topFive.map(({ user, score }, pos) => (
         <span key={ `${user || 'Sem nome'}-${pos}` } className="ranking-user-score">
           {`${user || 'Sem nome'} - ${score}%`}
         </span>
       ))}
+      <ResetRankingButton />
     </div>
   );
 }
