@@ -1,2 +1,2 @@
-Access [quiz-challenge](https://app.netlify.com/sites/danielfasanaro-trivia/settings/domain) to view the live version!
+Access [quiz-challenge](https://danielfasanaro-trivia.netlify.app/) to view the live version!
 
