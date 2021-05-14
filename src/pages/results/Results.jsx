@@ -10,6 +10,8 @@ import LinkButton from '../../components/LinkButton';
 import ErrorPage from '../../components/ErrorPage';
 import { restartGame } from '../../redux/reducers';
 
+import './Results.css';
+
 function Results() {
   const dispatch = useDispatch();
 
@@ -24,10 +26,11 @@ function Results() {
   } = useSelector((state) => state.userReducer);
 
   function renderQuestionsAndResults() {
+    const [correct, wrong] = ['has-text-link', 'has-text-danger'];
     return (
       <div className="results-container">
         {answers.map(({ question, isCorrect }) => (
-          <span key={ question } className="results-question">
+          <span key={ question } className={ isCorrect ? correct : wrong }>
             {isCorrect ? <FaCheck /> : <FaTimes />}
             {` - ${question}`}
           </span>
@@ -39,17 +42,19 @@ function Results() {
   if (!token) return <ErrorPage>Please restart game to create a new session</ErrorPage>;
 
   return (
-    <>
-      <Title>{`${user || 'Unknown'} your score is:${score}%`}</Title>
-      <CenterText>{renderQuestionsAndResults()}</CenterText>
-      <Ranking />
+    <div className="results-container">
+      <Title>{`${user || 'Unknown'} your score is ${score}%`}</Title>
+      <CenterText>
+        {renderQuestionsAndResults()}
+        <Ranking />
+      </CenterText>
       <LinkButton
         path="/"
         onClick={ () => dispatch(restartGame()) }
       >
         Play Again!
       </LinkButton>
-    </>
+    </div>
   );
 }
 

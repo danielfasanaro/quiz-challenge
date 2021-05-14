@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import { addAnswer } from '../../redux/reducers';
 
-function AnswerButton({ children, question }) {
+function AnswerButton({ children, question, color }) {
   const dispatch = useDispatch();
 
   function onAnswerClick() {
@@ -12,7 +12,7 @@ function AnswerButton({ children, question }) {
   }
 
   return (
-    <button type="button" onClick={ onAnswerClick }>
+    <button className={ `button ${color}` } type="button" onClick={ onAnswerClick }>
       {children}
     </button>
   );

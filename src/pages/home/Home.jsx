@@ -7,12 +7,14 @@ import TextInput from '../../components/TextInput';
 import LinkButton from '../../components/LinkButton';
 import { changeUser, getToken } from '../../redux/reducers';
 
+import './Home.css';
+
 function Home() {
   const dispatch = useDispatch();
 
   return (
-    <>
-      <Title>!!!WELCOME TO QUIZ!!!</Title>
+    <div className="home-container">
+      <Title>WELCOME TO QUIZ</Title>
       <CenterText>
         <span>10 questions will be shown to you.</span>
         <span>Can you get maximum score?</span>
@@ -29,7 +31,7 @@ function Home() {
       >
         START
       </LinkButton>
-    </>
+    </div>
   );
 }
 

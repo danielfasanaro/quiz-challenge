@@ -5,7 +5,13 @@ import { func } from 'prop-types';
 function StartButton({ onClick, path, children }) {
   return (
     <Link to={ path }>
-      <button type="button" onClick={ onClick }>{ children }</button>
+      <button
+        className="button is-primary is-medium"
+        type="button"
+        onClick={ onClick }
+      >
+        { children }
+      </button>
     </Link>
   );
 }

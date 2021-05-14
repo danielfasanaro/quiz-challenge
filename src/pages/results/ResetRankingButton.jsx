@@ -9,6 +9,7 @@ function ResetRankingButton() {
 
   return (
     <button
+      className="button is-danger is-small"
       type="button"
       onClick={ () => {
         deleteLocalRanking();

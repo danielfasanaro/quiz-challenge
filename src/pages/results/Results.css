@@ -1,0 +1,8 @@
+.results-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+  padding-top: 3vh;
+  width: 100vw;
+}

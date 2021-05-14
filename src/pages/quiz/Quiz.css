@@ -1,0 +1,8 @@
+.quiz-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 3vh;
+  justify-content: space-between;
+  padding-top: 3vh;
+}

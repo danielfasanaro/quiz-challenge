@@ -1,8 +1,10 @@
 import React from 'react';
 import { string } from 'prop-types';
 
+import './Loading.css';
+
 function Loading({ children }) {
-  return <span className="loading">{ children }</span>;
+  return <p className="loading-message">{ children }</p>;
 }
 
 Loading.propTypes = {

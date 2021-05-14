@@ -9,14 +9,22 @@ function AnswerList({ question }) {
     .reverse();
 
   function renderBooleanQuestion() {
+    const booleanClassColor = {
+      True: 'is-info',
+      False: 'is-danger',
+    };
     return (
-      <>
+      <div>
         {answers.map((answer) => (
-          <AnswerButton key={ `${answer}-answer-button` } question={ question }>
+          <AnswerButton
+            key={ `${answer}-answer-button` }
+            question={ question }
+            color={ booleanClassColor[answer] }
+          >
             {answer}
           </AnswerButton>
         ))}
-      </>
+      </div>
     );
   }
 

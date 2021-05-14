@@ -9,6 +9,8 @@ import Loading from '../../components/Loading';
 import ErrorPage from '../../components/ErrorPage';
 import { getQuestions, addRankingScore } from '../../redux/reducers';
 
+import './Quiz.css';
+
 function Quiz() {
   const dispatch = useDispatch();
 
@@ -38,13 +40,13 @@ function Quiz() {
   if (error) return <ErrorPage />;
 
   return (
-    <>
+    <div className="quiz-container">
       <Title>{ questions[currentQuestion].category }</Title>
       <CenterText>{ questions[currentQuestion].question }</CenterText>
       <AnswerList
         question={ questions[currentQuestion] }
       />
-    </>
+    </div>
   );
 }
 
